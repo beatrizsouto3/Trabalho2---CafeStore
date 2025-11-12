@@ -1,4 +1,4 @@
-# ☕ Café Store - SPA
+# ☕ Café Store
 
 Projeto da matéria de Programação Visual e Autoria Web, ministrada pelo professor Taniro. Consiste em um e-commerce **Single Page Application (SPA)** desenvolvido com JavaScript puro, focado na venda de cafés especiais. O projeto utiliza consumo de API RESTful simulada e persistência de dados local.
 
