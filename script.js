@@ -452,18 +452,9 @@ function renderSuccessPage(root) {
 
 //API
 async function fetchProducts() {
-  const apiEndpoint = "db.json";
-
-  try {
-    const response = await fetch(apiEndpoint);
-    if (!response.ok) throw new Error(`Erro na API: ${response.status}`);
-
-    const data = await response.json();
-    return data.coffee ? data.coffee : data;
-  } catch (error) {
-    console.error("Erro ao buscar os dados:", error);
-    throw error;
-  }
+  const res = await fetch("http://localhost:3000/coffee");
+  if (!res.ok) throw new Error(res.status);
+  return await res.json();
 }
 
 //cria card do produto
