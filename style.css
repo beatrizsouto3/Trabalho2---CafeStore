@@ -1,58 +1,34 @@
-.product-container {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.card-style {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  width: 300px;
-  font-family: "Arial, sans-serif";
-}
-
-.image-style {
-  width: 100%;
-  border-radius: 8px 8px 0 0;
-}
-
-.tittle-style {
-  margin: 16px 0 8px 0;
-  font-size: 18px;
-  color: #333;
-}
-
-.description-style {
-  margin: 8px 0;
-  color: #555;
-  font-size: 14px;
-}
-
-.ingredients-title-style {
-  margin: 8px 0;
-  font-size: 16px;
-  color: #333;
-}
-
-.ingredients-list-style {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ingredient-item-style {
-  color: #555;
-  font-size: 14px;
-  margin: 4px 0;
-}
-
 @font-face {
   font-family: "Saint Carell";
   src: url("fonts/SaintCarell_PERSONAL_USE_ONLY.otf") format("truetype");
+}
+
+.text-cafe {
+  color: #a0522d;
+}
+
+.text-store {
+  color: #556b2f;
+}
+
+.btn-store {
+  background-color: #556b2f;
+  border-color: #556b2f;
+  color: #ffffff;
+}
+
+.btn-store:hover {
+  background-color: #425524;
+  border-color: #425524;
+  color: #ffffff;
+}
+
+.product-card-hover {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.product-card-hover:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
