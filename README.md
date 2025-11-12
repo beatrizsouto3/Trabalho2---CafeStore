@@ -55,7 +55,3 @@ TRABALHO2---CAFESTORE/
 ---
 
 _Projeto desenvolvido para fins acadêmicos da disciplina de Programação Visual e Autoria Web._
-
-```
-
-```
