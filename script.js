@@ -1,4 +1,4 @@
-//real
+//valor em real
 const formatCurrency = (val) =>
   new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
     val
@@ -27,10 +27,12 @@ let checkoutData = { fullName: "", address: "", complement: "", cep: "" };
 
 document.addEventListener("DOMContentLoaded", () => navigateTo("home"));
 
+//roteamento princiapl
 function navigateTo(page) {
   const root = document.getElementById("root");
   if (!root) return;
 
+  //renderiza pagina
   root.innerHTML = "";
   root.appendChild(createHeader());
 
@@ -52,9 +54,13 @@ function navigateTo(page) {
       renderSuccessPage(root);
       break;
   }
+
+  //footer nas paginas
+  const footer = createFooter();
+  root.appendChild(footer);
 }
 
-//localstorage
+//acessar dados do carrinho
 const getCart = () => JSON.parse(localStorage.getItem("coffeeCart")) || [];
 const saveCart = (cart) =>
   localStorage.setItem("coffeeCart", JSON.stringify(cart));
@@ -69,24 +75,28 @@ function addToCart(product) {
   showToast(`${product.title} adicionado!`);
 }
 
+//atualiza qntd itns carrinho
 function updateCartQuantity(id, change) {
   let cart = getCart();
   const item = cart.find((i) => i.id == id);
   if (!item) return;
 
   item.quantity += change;
+  //qntd itens = 0 (remove)
   if (item.quantity <= 0) cart = cart.filter((i) => i.id != id);
 
   saveCart(cart);
   navigateTo("cart");
 }
 
+//remove produto
 function removeProduct(id) {
   const cart = getCart().filter((i) => i.id != id);
   saveCart(cart);
   navigateTo("cart");
 }
 
+//calcula total da compra
 const getCartTotal = () =>
   getCart().reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -103,7 +113,7 @@ function updateCartBadge() {
   }, 0);
 }
 
-//componentes
+//renderiza header
 function createHeader() {
   const header = document.createElement("header");
   header.className =
@@ -152,12 +162,39 @@ function createHeader() {
   return header;
 }
 
+//rodapé
+function createFooter() {
+  const footer = document.createElement("footer");
+  footer.className = "bg-white border-top py-4 mt-5";
+
+  const container = document.createElement("div");
+  container.className = "container text-center";
+
+  const year = new Date().getFullYear();
+
+  container.innerHTML = `
+    <p class="mb-1 text-muted small">
+      &copy; ${year} <span style="font-family: 'Ameria', serif;">- Café Stores</span>.
+    </p>
+    <p class="mb-0">
+      Desenvolvido por <strong class="text-cafe">Beatriz Souto</strong> | 
+      <a href="https://github.com/beatrizsouto3" target="_blank" class="text-decoration-none fw-bold text-store">
+        <i class="bi bi-github"></i> GitHub
+      </a>
+    </p>
+  `;
+
+  footer.appendChild(container);
+  return footer;
+}
+
+//lista produtos API
 async function renderHomePage(root) {
   const container = document.createElement("div");
   container.className = "container mt-4";
 
   container.innerHTML = `
-    <h2 class="mb-4 text-cafe">Nossos Cafés</h2>
+    <h2 class="mb-4 text-cafe">✹ Nossos Cafés ✹</h2>
     <div id="product-list" class="row">
       <div class="text-center py-5 w-100">
         <div class="spinner-border text-store" role="status"></div>
@@ -168,9 +205,11 @@ async function renderHomePage(root) {
   root.appendChild(container);
 
   try {
+    //busca produtos da API
     const products = await fetchProducts();
     const list = document.getElementById("product-list");
     list.innerHTML = "";
+    //cria card ddo produto
     products.forEach((p) => list.appendChild(createProductCard(p)));
   } catch (e) {
     document.getElementById("product-list").innerHTML =
@@ -184,6 +223,8 @@ function renderCartPage(root) {
   container.className = "container mt-4";
 
   const cart = getCart();
+
+  //carrinho vazio
   if (!cart.length) {
     container.innerHTML =
       '<h2 class="mb-4">Carrinho</h2><p class="alert alert-info">Seu carrinho está vazio.</p>';
@@ -191,6 +232,7 @@ function renderCartPage(root) {
     return;
   }
 
+  //tabela de itens - carrinho
   let html = `
     <h2 class="mb-4">Seu Carrinho de Compras</h2>
     <table class="table align-middle">
@@ -241,7 +283,7 @@ function renderCartPage(root) {
     .addEventListener("click", () => navigateTo("checkout"));
 }
 
-//endereco
+//informações de entrega
 function renderCheckoutStep1(root) {
   const container = document.createElement("div");
   container.className = "container mt-5";
@@ -269,6 +311,7 @@ function renderCheckoutStep1(root) {
       e.stopPropagation();
       form.classList.add("was-validated");
     } else {
+      //salva dados
       checkoutData = {
         fullName: document.getElementById("fullname").value,
         cep: document.getElementById("cep").value,
@@ -383,7 +426,7 @@ function renderCheckoutStep2(root) {
     .forEach((r) => r.addEventListener("change", updatePayment));
   updatePayment();
 }
-
+//finaliza pedido
 window.finishOrder = () => {
   clearCart();
   navigateTo("success");
@@ -414,6 +457,7 @@ async function fetchProducts() {
   return await res.json();
 }
 
+//cria card do produto
 function createProductCard(p) {
   const col = document.createElement("div");
   col.className = "col-md-6 col-lg-4 mb-4";
