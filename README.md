@@ -12,19 +12,21 @@ Projeto da matéria de Programação Visual e Autoria Web, ministrada pelo profe
 - **JSON Server:** Simulação de API REST para os produtos.
 - **Web Storage API:** Persistência do carrinho de compras (`localStorage`).
 
+````markdown
 ## 📂 Estrutura do Projeto
 
-Essa foi a estrutura do meu projeto:
-
+```text
 TRABALHO2---CAFESTORE/
 │
 ├── 📂 fonts/
-│ └── 📄 SaintCarell_PERSONAL_USE_ONLY.otf
+│   └── 🔤 SaintCarell_PERSONAL_USE_ONLY.otf
 │
-├── 📄 db.json (Banco de dados simulado)
-├── 📄 index.html (Página única / SPA)
-├── 📄 script.js (Lógica do sistema)
-└── 📄 style.css (Estilos e fontes)
+├── 📄 db.json        (Banco de dados simulado)
+├── 🌐 index.html     (Página única / SPA)
+├── 📜 script.js      (Lógica do sistema)
+└── 🎨 style.css      (Estilos e fontes)
+```
+````
 
 ## ✨ Funcionalidades Principais
 
