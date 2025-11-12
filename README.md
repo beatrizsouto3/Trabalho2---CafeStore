@@ -16,10 +16,11 @@ Projeto da matéria de Programação Visual e Autoria Web, ministrada pelo profe
 
 Essa foi a estrutura do meu projeto:
 
+```text
 TRABALHO2---CAFESTORE/
 │
-├── 📁 fonts/
-│ └── 📄 SaintCarell_PERSONAL_USE_ONLY.otf
+├── 📂 fonts/
+│   └── 📄 SaintCarell_PERSONAL_USE_ONLY.otf
 │
 ├── 📄 db.json
 ├── 📄 index.html
@@ -55,3 +56,4 @@ TRABALHO2---CAFESTORE/
 ---
 
 _Projeto desenvolvido para fins acadêmicos da disciplina de Programação Visual e Autoria Web._
+```
