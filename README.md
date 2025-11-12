@@ -21,9 +21,9 @@ TRABALHO2---CAFESTORE/
 ├── 📁 fonts/
 │ └── 📄 SaintCarell_PERSONAL_USE_ONLY.otf
 │
-├── 📄 db.json  
-├── 📄 index.html  
-├── 📄 script.js  
+├── 📄 db.json
+├── 📄 index.html
+├── 📄 script.js
 └── 📄 style.css
 
 ## ✨ Funcionalidades Principais
