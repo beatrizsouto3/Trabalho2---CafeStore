@@ -148,7 +148,7 @@ function createHeader() {
   //modo escuro
   const themeBtn = document.createElement("button");
   themeBtn.id = "theme-toggle-btn";
-  themeBtn.className = "btn btn-light btn-sm ms-2 border";
+  themeBtn.className = "btn btn-store btn-sm ms-2";
   themeBtn.onclick = toggleTheme;
 
   const isDark = document.body.classList.contains("dark-mode");
