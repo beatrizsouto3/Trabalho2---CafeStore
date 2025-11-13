@@ -145,6 +145,21 @@ function createHeader() {
   });
   nav.appendChild(cartLink);
 
+  //modo escuro
+  const themeBtn = document.createElement("button");
+  themeBtn.id = "theme-toggle-btn";
+  themeBtn.className = "btn btn-light btn-sm ms-2 border";
+  themeBtn.onclick = toggleTheme;
+
+  const isDark = document.body.classList.contains("dark-mode");
+  themeBtn.innerHTML = isDark
+    ? '<i class="bi bi-sun-fill"></i>'
+    : '<i class="bi bi-moon-fill"></i>';
+
+  nav.appendChild(cartLink);
+  nav.appendChild(themeBtn);
+
+  //mobile
   const toggler = document.createElement("button");
   toggler.className = "navbar-toggler";
   toggler.setAttribute("data-bs-toggle", "collapse");
@@ -505,6 +520,7 @@ function renderOrderSummary() {
     )}</strong></li>`;
 }
 
+//lógica adicionar, retirar e remover item
 document.addEventListener("click", (e) => {
   const btnAdd = e.target.closest(".btn-add-one");
   const btnRem = e.target.closest(".btn-remove-one");
@@ -514,4 +530,31 @@ document.addEventListener("click", (e) => {
   if (btnRem) updateCartQuantity(parseInt(btnRem.dataset.id), -1);
   if (btnTrash && confirm("Remover item?"))
     removeProduct(parseInt(btnTrash.dataset.id));
+});
+
+//lógica modo escuro
+function toggleTheme() {
+  const body = document.body;
+  const isDark = body.classList.toggle("dark-mode");
+
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+
+  updateThemeIcon();
+}
+
+function updateThemeIcon() {
+  const btn = document.getElementById("theme-toggle-btn");
+  if (!btn) return;
+
+  const isDark = document.body.classList.contains("dark-mode");
+  btn.innerHTML = isDark
+    ? '<i class="bi bi-sun-fill"></i>'
+    : '<i class="bi bi-moon-fill"></i>';
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+  }
 });
